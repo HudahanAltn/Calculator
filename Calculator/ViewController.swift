@@ -18,6 +18,20 @@ class ViewController: UIViewController {
     
     private var isFinishedTypingNumber:Bool = true //we created this variable to control printing text to the screen
     
+    private var displayValue:Double{
+        
+        get{
+            guard let number = Double(displayLabel.text!) else{
+                
+                fatalError("Cannot convert display label text to a Double")
+            }
+            
+            return number
+        }set{
+            
+            displayLabel.text = String(newValue)
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,10 +45,7 @@ class ViewController: UIViewController {
         
         isFinishedTypingNumber = true// user press calcbutton our variable set true,because calc will do
         
-        guard let number = Double(displayLabel.text!) else{
-            
-            fatalError("Cannot convert display label text to a Double")
-        }
+       
         
         if let calcMethod = sender.titleLabel?.text{// calcbutton decompose
             
@@ -43,15 +54,14 @@ class ViewController: UIViewController {
                 
             case "+/-":
                 
-                displayLabel.text = String(number * -1)
+                displayValue *= -1
             
             case "AC":
                 
                 displayLabel.text = String(0)
                 
             case "%":
-                displayLabel.text = String(number/100)
-                
+                displayValue *= 0.01
             default:
                 break
             }
@@ -68,12 +78,22 @@ class ViewController: UIViewController {
             print(numValue)
             if isFinishedTypingNumber{ // if it is true we have only just started
                 
-                displayLabel.text = numValue
-                isFinishedTypingNumber = false
+                displayLabel.text = numValue // writed current one number
+                isFinishedTypingNumber = false //set to false because other numbers will come after
                 
-            }else{// if it is not there is a number before
+            }else{// if it is not there is a number before other numbers
                
+                if numValue == "."{ //we checked decimal point
+                    
+                    let isInt = floor(displayValue) == displayValue
+                    
+                    if !isInt{
+                        
+                        return
+                    }
+                }
                 displayLabel.text = displayLabel.text! + numValue
+                
                 
             }
             
