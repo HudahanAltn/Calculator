@@ -32,6 +32,7 @@ class ViewController: UIViewController {
             displayLabel.text = String(newValue)
         }
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -45,28 +46,22 @@ class ViewController: UIViewController {
         
         isFinishedTypingNumber = true// user press calcbutton our variable set true,because calc will do
         
-       
-        
         if let calcMethod = sender.titleLabel?.text{// calcbutton decompose
             
+            let calculator = CalculatorLogic(number: displayValue) //cretaed object and pass displayvalue
             
-            switch calcMethod{
-                
-            case "+/-":
-                
-                displayValue *= -1
             
-            case "AC":
+            guard let result = calculator.calculate(symbol: calcMethod) else{
                 
-                displayLabel.text = String(0)
-                
-            case "%":
-                displayValue *= 0.01
-            default:
-                break
+                fatalError("the result of the calculation is nil")
             }
-
+                
+            displayValue = result 
+            
+            
         }
+        
+      
         
 
     }
