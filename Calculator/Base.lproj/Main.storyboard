@@ -299,7 +299,7 @@
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="systemPurpleColor"/>
                         <constraints>
                             <constraint firstItem="IMT-dA-N5V" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="50R-f2-YrC"/>
                             <constraint firstItem="IMT-dA-N5V" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="5w8-oA-OlN"/>
@@ -308,6 +308,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="ACButton" destination="qQG-sT-0S0" id="Rbb-sN-SXf"/>
                         <outlet property="displayLabel" destination="kRf-p9-jTZ" id="GaM-fq-mtN"/>
                     </connections>
                 </viewController>
@@ -322,6 +323,9 @@
         </systemColor>
         <systemColor name="systemOrangeColor">
             <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPurpleColor">
+            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
